@@ -7,10 +7,10 @@ from markitdown import MarkItDown
 from langchain_ollama import ChatOllama
 
 
-
 def get_ollama_llm(
-        model_name: str = "qwen2.5-coder:14b",
-        # model_name: str = "gemma2",
+        # model_name: str = "qwen2.5-coder:14b",
+        # model_name: str = "qwen2.5:14b",
+        model_name: str = "gemma2",
         temperature: float = 0.8,
     ):
     llm = ChatOllama(
@@ -27,7 +27,7 @@ def get_markdown_from_pdf(pdf_file_path):
     return result.text_content
 
 def ask_llm(llm, query):
-    response = llm.stream(f'{query}\nAnswer in 100 words or less.')
+    response = llm.stream(f'{query}')
     return response
 
 def rm_pdf_4m_sess():

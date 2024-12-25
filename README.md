@@ -7,10 +7,12 @@
 
 ## How to use
 [Here](https://papers-gpt.riju.tech/)
+> Pro tip: Larger PDFs tend to overflow the LLM's token limit, so split it up into smaller chunks.
+> E.g. For research papers, you can entirely omit the References section.
 
 ## Installation
 1. Clone the repo
-2. Run `poetry install`
+2. Run `poetry install --no-root`
 3. Run `streamlit run --browser.gatherUsageStats false src/main.py`
 
 ## Privacy and Security
