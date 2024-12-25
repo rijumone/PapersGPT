@@ -8,6 +8,11 @@
 ## How to use
 [Here](https://papers-gpt.riju.tech/)
 
+## Installation
+1. Clone the repo
+2. Run `poetry install`
+3. Run `streamlit run --browser.gatherUsageStats false src/main.py`
+
 ## Privacy and Security
 TLDR: I don't store anything.
 

@@ -2,6 +2,7 @@ import os
 from tempfile import NamedTemporaryFile
 import streamlit as st
 from streamlit_pdf_viewer import pdf_viewer
+from loguru import logger
 from markitdown import MarkItDown
 from langchain_ollama import ChatOllama
 
@@ -36,20 +37,23 @@ def rm_pdf_4m_sess():
 
 
 def main():
+    st.set_page_config(page_title=os.getenv("APP_NAME"))
     st.title(os.getenv("APP_NAME"))
     def chat_callback():
         if 'messages' not in st.session_state:
             st.session_state.messages = []
+        user_input = st.session_state.user_input
+        logger.info(f'user_input: {user_input}')
         message = {
             "role": "user",
-            "content": st.session_state.user_input,
+            "content": user_input,
         }
         st.session_state.messages.append(message)
         response_msg = {
             "role": "assistant",
             "content": ask_llm(
                 st.session_state.llm,
-                f'{st.session_state.mkdwn_4m_pdf}\nQuestion: {st.session_state.user_input}',
+                f'{st.session_state.mkdwn_4m_pdf}\nQuestion: {user_input}',
             ),
         }
         st.session_state.messages.append(response_msg)
@@ -71,6 +75,7 @@ def main():
         _tf.write(uploaded_file.getvalue())
 
         if 'mkdwn_4m_pdf' not in st.session_state:
+            logger.debug(f'{_tf.name}')
             st.session_state.mkdwn_4m_pdf = get_markdown_from_pdf(_tf.name)
         
         if 'llm' not in st.session_state:
