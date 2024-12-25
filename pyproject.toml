@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "researchpapergpt"
+version = "0.1.0"
+description = "Upload PDFs of research papers and journals and ask questions about them."
+authors = ["Riju <mailmeonriju@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain = "^0.3.13"
+streamlit = "^1.41.1"
+streamlit-pdf-viewer = "^0.0.19"
+watchdog = "^6.0.0"
+markitdown = "^0.0.1a3"
+langchain-ollama = "^0.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
