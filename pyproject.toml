@@ -14,6 +14,7 @@ streamlit-pdf-viewer = "^0.0.19"
 watchdog = "^6.0.0"
 markitdown = "^0.0.1a3"
 langchain-ollama = "^0.2.2"
+loguru = "^0.7.3"
 
 
 [build-system]
