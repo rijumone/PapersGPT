@@ -8,9 +8,7 @@ from langchain_ollama import ChatOllama
 
 
 def get_ollama_llm(
-        # model_name: str = "qwen2.5-coder:14b",
-        # model_name: str = "qwen2.5:14b",
-        model_name: str = "gemma2",
+        model_name: str,
         temperature: float = 0.8,
     ):
     llm = ChatOllama(
@@ -58,7 +56,13 @@ def main():
         }
         st.session_state.messages.append(response_msg)
 
-
+    # Add model selection dropdown
+    available_models = ["gemma2:latest", "phi4:latest",]
+    selected_model = st.selectbox("Select AI Model", available_models, index=0)
+    if 'selected_model' not in st.session_state:
+        st.session_state.selected_model = selected_model
+        
+        
     # File uploader
     uploaded_file = st.file_uploader(
         "Choose a PDF file", type="pdf", on_change=rm_pdf_4m_sess)
@@ -78,8 +82,10 @@ def main():
             logger.debug(f'{_tf.name}')
             st.session_state.mkdwn_4m_pdf = get_markdown_from_pdf(_tf.name)
         
+        
+        
         if 'llm' not in st.session_state:
-            st.session_state.llm = get_ollama_llm()
+            st.session_state.llm = get_ollama_llm(st.session_state.selected_model)
         llm = st.session_state.llm
         
         if 'general_paper_summary' not in st.session_state:
