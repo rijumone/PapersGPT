@@ -57,7 +57,7 @@ def main():
         st.session_state.messages.append(response_msg)
 
     # Add model selection dropdown
-    available_models = ["gemma2:latest", "phi4:latest",]
+    available_models = ["phi4:latest", "gemma2:latest", ]
     selected_model = st.selectbox("Select AI Model", available_models, index=0)
     if 'selected_model' not in st.session_state:
         st.session_state.selected_model = selected_model
