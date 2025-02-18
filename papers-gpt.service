@@ -1,0 +1,16 @@
+[Unit]
+Description=PapersGPT Service (with tmux)
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/bin/bash -c '/home/admin/Kitchen/PapersGPT/.tmux_manager.sh papers-gpt /home/admin/Kitchen/PapersGPT start'
+ExecStop=/bin/bash -c '/home/admin/Kitchen/PapersGPT/.tmux_manager.sh papers-gpt /home/admin/Kitchen/PapersGPT stop'
+Restart=on-failure
+RemainAfterExit=yes
+User=jobs
+TimeoutSec=150
+WorkingDirectory=/home/admin/Kitchen/PapersGPT
+
+[Install]
+WantedBy=multi-user.target
