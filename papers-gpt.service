@@ -8,7 +8,7 @@ ExecStart=/bin/bash -c '/home/admin/Kitchen/PapersGPT/.tmux_manager.sh papers-gp
 ExecStop=/bin/bash -c '/home/admin/Kitchen/PapersGPT/.tmux_manager.sh papers-gpt /home/admin/Kitchen/PapersGPT stop'
 Restart=on-failure
 RemainAfterExit=yes
-User=jobs
+User=admin
 TimeoutSec=150
 WorkingDirectory=/home/admin/Kitchen/PapersGPT
 
